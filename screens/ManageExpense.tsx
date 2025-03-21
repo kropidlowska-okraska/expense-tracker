@@ -3,19 +3,15 @@ import { StyleSheet, View } from "react-native";
 import Button from "../components/ui/Button";
 import IconButton from "../components/ui/IconButton";
 import { GlobalStyles } from "../constants/styles";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-type Props = {
-	route: {
-		params: {
-			expenseId: string;
-		};
-	};
-  navigation: {
-    setOptions: (options: { title: string }) => void;
-  };
+type RootStackParamList = {
+  ManageExpense: { expenseId?: string };
 };
 
-function ManageExpense({ route, navigation }: Props) {
+type ManageExpenseProps = NativeStackScreenProps<RootStackParamList, 'ManageExpense'>;
+
+function ManageExpense({ route, navigation }: ManageExpenseProps) {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
@@ -25,11 +21,18 @@ function ManageExpense({ route, navigation }: Props) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {}
+  function deleteExpenseHandler() {
+    navigation.goBack()
+  }
 
-  function cancelHandler() {}
+  function cancelHandler() {
+    navigation.goBack()
 
-  function confirmHandler() {}
+  }
+
+  function confirmHandler() {
+    navigation.goBack()
+  }
 
   return (
     <View style={styles.container}>
