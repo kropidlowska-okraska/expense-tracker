@@ -8,10 +8,6 @@ type Item = {
 	date: Date;
 }
 
-type ItemData = {
-	item: Item;
-};
-
 type Props = {
 	expenses: Item[];
 };

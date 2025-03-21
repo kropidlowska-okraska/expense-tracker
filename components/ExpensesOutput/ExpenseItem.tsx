@@ -5,20 +5,21 @@ import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../utils/date";
 
 type Props = {
-    description: string;    
-    amount: number;
-    date: Date;
+	id: string;
+	description: string;
+	amount: number;
+	date: Date;
 };
 
-function ExpenseItem({ description, amount, date }: Props) {
+function ExpenseItem({ id, description, amount, date }: Props) {
 	type RootStackParamList = {
-		ManageExpense: undefined;
+		ManageExpense: { expenseId: string };
 	};
 
 	const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
 	function expensePressHandler() {
-		navigation.navigate("ManageExpense");
+		navigation.navigate("ManageExpense", { expenseId: id });
 	}
 
 	return (
